@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SIMATS Engineering Syllabus Hub</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+    body { background: #f4f7fa; color: #333; }
+    .login-page, .home-page, .syllabus-section { display: none; padding: 20px; }
+    .login-page.active, .home-page.active, .syllabus-section.active { display: block; }
+    .login-container {
+      max-width: 400px; background: white; padding: 30px; margin: 80px auto;
+      border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .login-container h2 { margin-bottom: 20px; color: #004080; }
+    .login-container input {
+      width: 100%; padding: 10px; margin: 10px 0;
+      border: 1px solid #ccc; border-radius: 5px;
+    }
+    .login-container button {
+      width: 100%; padding: 10px; background: #004080;
+      color: white; border: none; border-radius: 5px;
+      font-weight: bold; cursor: pointer;
+    }
+    .login-container button:hover { background: #0066cc; }
+    header {
+      background: #004080; color: white;
+      text-align: center; padding: 20px;
+    }
+    .home-page h2 { text-align: center; margin: 20px 0; color: #004080; }
+    .branches {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 15px; margin: 20px auto; max-width: 1000px;
+    }
+    .branch {
+      background: #ffffff; padding: 20px; width: 200px;
+      border-radius: 10px; text-align: center; cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: 0.3s;
+      border-top: 5px solid #00bcd4;
+    }
+    .branch:hover { background: #e0f7fa; transform: scale(1.05); }
+    .semester, .subject { background: white; padding: 20px; border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    .semester h3, .subject h4 { color: #007acc; margin-bottom: 10px; cursor: pointer; }
+    ul { padding-left: 20px; display: none; }
+    ul.topics li { cursor: pointer; margin-bottom: 6px; }
+    ul.questions { padding-left: 24px; margin-top: 5px; display: none; font-style: italic; color: #555; }
+    .back-btn {
+      background: #007acc; color: white; padding: 10px 15px;
+      border: none; border-radius: 5px; margin-bottom: 20px;
+      cursor: pointer;
+    }
+    @media screen and (max-width: 600px) {
+      .branch { width: 90%; }
+      .login-container { margin: 40px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-page active" id="loginPage">
+    <div class="login-container">
+      <h2>SIMATS Login</h2>
+      <input type="text" placeholder="Enter Username" id="username" />
+      <input type="password" placeholder="Enter Password" id="password" />
+      <button onclick="login()">Login</button>
+    </div>
+  </div>
+
+  <div class="home-page" id="homePage">
+    <header><h1>SIMATS Engineering Syllabus Hub</h1></header>
+    <h2>Select Your Branch</h2>
+    <div class="branches">
+      <div class="branch" onclick="showSyllabus('cse')">CSE</div>
+      <div class="branch" onclick="showSyllabus('ece')">ECE</div>
+      <div class="branch" onclick="showSyllabus('eee')">EEE</div>
+      <div class="branch" onclick="showSyllabus('mech')">MECH</div>
+      <div class="branch" onclick="showSyllabus('civil')">CIVIL</div>
+    </div>
+  </div>
+
+  <!-- CSE Section -->
+  <div class="syllabus-section" id="cse">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>CSE Syllabus</h2>
+    <!-- 8 Semesters with multiple subjects, topics, questions -->
+    <div class="semester">
+      <h3>1st Semester</h3>
+      <div class="subject">
+        <h4 onclick="toggleTopics(this)">Programming in C</h4>
+        <ul class="topics">
+          <li onclick="toggleQuestions(event)">Variables, Data types
+            <ul class="questions">
+              <li>Explain the different data types in C. (10 Marks)</li>
+              <li>Describe how variables are declared and initialized. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">Control Structures
+            <ul class="questions">
+              <li>Describe if-else and switch-case structures in C. (10 Marks)</li>
+              <li>Explain looping with examples. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">Functions and Arrays
+            <ul class="questions">
+              <li>What is a function? Explain parameter passing. (10 Marks)</li>
+              <li>How are arrays declared and used in C? (10 Marks)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subject">
+        <h4 onclick="toggleTopics(this)">Engineering Mathematics</h4>
+        <ul class="topics">
+          <li onclick="toggleQuestions(event)">Limits and Continuity
+            <ul class="questions">
+              <li>Define limits and continuity with examples. (10 Marks)</li>
+              <li>Explain the significance of limits in engineering calculations. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">Differentiation
+            <ul class="questions">
+              <li>State and explain differentiation rules. (10 Marks)</li>
+              <li>Apply differentiation to find maxima and minima. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">Integration
+            <ul class="questions">
+              <li>Explain definite and indefinite integrals. (10 Marks)</li>
+              <li>Evaluate integrals related to engineering problems. (10 Marks)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subject">
+        <h4 onclick="toggleTopics(this)">Physics</h4>
+        <ul class="topics">
+          <li onclick="toggleQuestions(event)">Mechanics
+            <ul class="questions">
+              <li>Explain Newton’s laws of motion. (10 Marks)</li>
+              <li>Calculate work done by a force. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">Thermodynamics
+            <ul class="questions">
+              <li>State the laws of thermodynamics. (10 Marks)</li>
+              <li>Explain thermal conductivity and its applications. (10 Marks)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Repeat similar for semesters 2 to 8 for CSE, omitted here for brevity -->
+  </div>
+
+  <!-- ECE Section -->
+  <div class="syllabus-section" id="ece">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>ECE Syllabus</h2>
+    <!-- 8 Semesters with subjects, topics, and questions for ECE -->
+    <div class="semester">
+      <h3>1st Semester</h3>
+      <div class="subject">
+        <h4 onclick="toggleTopics(this)">Circuit Theory</h4>
+        <ul class="topics">
+          <li onclick="toggleQuestions(event)">Basic Electrical Components
+            <ul class="questions">
+              <li>Explain resistance, capacitance, and inductance. (10 Marks)</li>
+              <li>Describe Ohm's law and its applications. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">Network Theorems
+            <ul class="questions">
+              <li>State and explain Thevenin's theorem. (10 Marks)</li>
+              <li>Apply Norton’s theorem to circuits. (10 Marks)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subject">
+        <h4 onclick="toggleTopics(this)">Electronic Devices</h4>
+        <ul class="topics">
+          <li onclick="toggleQuestions(event)">Semiconductor Basics
+            <ul class="questions">
+              <li>Explain intrinsic and extrinsic semiconductors. (10 Marks)</li>
+              <li>Describe p-n junction characteristics. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">Diodes and Transistors
+            <ul class="questions">
+              <li>What is a diode? Explain its types. (10 Marks)</li>
+              <li>Discuss transistor operation and types. (10 Marks)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- repeat semesters 2 to 8 for ECE ... omitted for brevity -->
+  </div>
+
+  <!-- EEE Section -->
+  <div class="syllabus-section" id="eee">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>EEE Syllabus</h2>
+    <div class="semester">
+      <h3>1st Semester</h3>
+      <div class="subject">
+        <h4 onclick="toggleTopics(this)">Electric Circuits</h4>
+        <ul class="topics">
+          <li onclick="toggleQuestions(event)">DC Circuits
+            <ul class="questions">
+              <li>Explain Kirchhoff’s Laws. (10 Marks)</li>
+              <li>Analyze series-parallel circuits. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">AC Fundamentals
+            <ul class="questions">
+              <li>Define RMS and peak values. (10 Marks)</li>
+              <li>Explain power factor and its importance. (10 Marks)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subject">
+        <h4 onclick="toggleTopics(this)">Electromagnetics</h4>
+        <ul class="topics">
+          <li onclick="toggleQuestions(event)">Magnetic Circuits
+            <ul class="questions">
+              <li>Explain magnetic flux and reluctance. (10 Marks)</li>
+              <li>Discuss hysteresis and eddy current losses. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">Transformers
+            <ul class="questions">
+              <li>Description and operation of transformers. (10 Marks)</li>
+              <li>Explain efficiency and regulation of transformers. (10 Marks)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- repeat semesters 2 to 8 for EEE ... omitted for brevity -->
+  </div>
+
+  <!-- MECH Section -->
+  <div class="syllabus-section" id="mech">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>MECH Syllabus</h2>
+    <div class="semester">
+      <h3>1st Semester</h3>
+      <div class="subject">
+        <h4 onclick="toggleTopics(this)">Engineering Mechanics</h4>
+        <ul class="topics">
+          <li onclick="toggleQuestions(event)">Statics
+            <ul class="questions">
+              <li>Explain forces and equilibrium. (10 Marks)</li>
+              <li>Calculate reactions in beams. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">Dynamics
+            <ul class="questions">
+              <li>State Newton’s second law. (10 Marks)</li>
+              <li>Explain work-energy principle. (10 Marks)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subject">
+        <h4 onclick="toggleTopics(this)">Thermodynamics</h4>
+        <ul class="topics">
+          <li onclick="toggleQuestions(event)">Basic Concepts
+            <ul class="questions">
+              <li>Define system and surroundings. (10 Marks)</li>
+              <li>State the first law of thermodynamics. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">Properties of Pure Substances
+            <ul class="questions">
+              <li>Explain phase diagrams. (10 Marks)</li>
+              <li>Describe ideal and real gases. (10 Marks)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- repeat semesters 2 to 8 for MECH ... omitted for brevity -->
+  </div>
+
+  <!-- CIVIL Section -->
+  <div class="syllabus-section" id="civil">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>CIVIL Syllabus</h2>
+    <div class="semester">
+      <h3>1st Semester</h3>
+      <div class="subject">
+        <h4 onclick="toggleTopics(this)">Building Materials</h4>
+        <ul class="topics">
+          <li onclick="toggleQuestions(event)">Stone & Bricks
+            <ul class="questions">
+              <li>Explain types of stones used in construction. (10 Marks)</li>
+              <li>Describe brick manufacturing process. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">Cement & Concrete
+            <ul class="questions">
+              <li>Define properties of cement. (10 Marks)</li>
+              <li>Explain concrete mix design. (10 Marks)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subject">
+        <h4 onclick="toggleTopics(this)">Engineering Mechanics</h4>
+        <ul class="topics">
+          <li onclick="toggleQuestions(event)">Forces and Moments
+            <ul class="questions">
+              <li>State principle of moments. (10 Marks)</li>
+              <li>Calculate centroid and moment of inertia. (10 Marks)</li>
+            </ul>
+          </li>
+          <li onclick="toggleQuestions(event)">Stress and Strain
+            <ul class="questions">
+              <li>Describe axial stress and strain. (10 Marks)</li>
+              <li>Explain Hooke’s law. (10 Marks)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- repeat semesters 2 to 8 for CIVIL ... omitted for brevity -->
+  </div>
+
+<script>
+  function login() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    if (user && pass) {
+      document.getElementById("loginPage").classList.remove("active");
+      document.getElementById("homePage").classList.add("active");
+    } else {
+      alert("Please enter username and password.");
+    }
+  }
+
+  function showSyllabus(branch) {
+    document.getElementById("homePage").classList.remove("active");
+    document.querySelectorAll(".syllabus-section").forEach(sec => sec.classList.remove("active"));
+    const el = document.getElementById(branch);
+    if(el) el.classList.add("active");
+  }
+
+  function goBack() {
+    document.querySelectorAll(".syllabus-section").forEach(sec => sec.classList.remove("active"));
+    document.getElementById("homePage").classList.add("active");
+  }
+
+  function toggleTopics(element) {
+    const ul = element.nextElementSibling;
+    if (!ul) return;
+    ul.style.display = ul.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function toggleQuestions(event) {
+    event.stopPropagation();
+    const ul = event.currentTarget.querySelector('ul.questions');
+    if (!ul) return;
+    ul.style.display = ul.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
+</body>
+</html>
+
